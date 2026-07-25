@@ -1,10 +1,15 @@
 import pandas as pd
 import re
+import nltk
+from nltk.corpus import stopwords
+
+# Download the stopwords list (only needs to happen once)
+nltk.download('stopwords')
 
 # Load the dataset
 df = pd.read_csv("data/IMDB Dataset.csv")
 
-# Function to remove HTML tags like <br /><br />
+# ---- STEP 1: Remove HTML tags ----
 
 
 def remove_html_tags(text):
@@ -12,27 +17,37 @@ def remove_html_tags(text):
     return clean_text
 
 
-# Test it on the first review to see if it worked
-print("BEFORE cleaning:")
-print(df["review"][1][:200])  # show first 200 characters of review #1
-
 df["review"] = df["review"].apply(remove_html_tags)
 
-print("\nAFTER cleaning:")
-# Function to clean text: lowercase + remove punctuation
+# ---- STEP 2: Lowercase + remove punctuation/numbers ----
 
 
 def clean_text(text):
-    text = text.lower()  # convert to lowercase
-    # remove anything that's not a letter or space
+    text = text.lower()
     text = re.sub(r"[^a-z\s]", "", text)
     return text
 
 
-print("\nBEFORE lowercase/punctuation cleaning:")
-print(df["review"][1][:200])
-
 df["review"] = df["review"].apply(clean_text)
 
-print("\nAFTER lowercase/punctuation cleaning:")
+# ---- STEP 3: Remove stopwords ----
+stop_words = set(stopwords.words('english'))
+
+
+def remove_stopwords(text):
+    words = text.split()
+    filtered_words = [word for word in words if word not in stop_words]
+    return " ".join(filtered_words)
+
+
+print("BEFORE stopword removal:")
 print(df["review"][1][:200])
+
+df["review"] = df["review"].apply(remove_stopwords)
+
+print("\nAFTER stopword removal:")
+print(df["review"][1][:200])
+
+# ---- Save the fully cleaned dataset ----
+df.to_csv("data/IMDB_Dataset_cleaned.csv", index=False)
+print("\nCleaning complete! Saved as data/IMDB_Dataset_cleaned.csv")

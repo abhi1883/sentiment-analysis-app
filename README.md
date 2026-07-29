@@ -1,3 +1,7 @@
+# 🎬 Movie Review Sentiment Analyzer
+
+A machine learning web app that predicts whether a movie review is positive or negative, built using Natural Language Processing (NLP) techniques.
+
 ## 🌐 Live Demo
 Try the app here: **[abhinanda-sentiment-analyzer.streamlit.app](https://abhinanda-sentiment-analyzer.streamlit.app)**
 
@@ -19,5 +23,8 @@ This project analyzes movie reviews from the IMDB dataset (50,000 reviews) and p
 - **Streamlit** — interactive web app
 
 ## 🚀 How to Run Locally
+1. Clone this repository
+2. Install dependencies:
+3. Run the app:
 ## 👤 Author
 Abhinanda Udupa — 3rd Semester Engineering Student

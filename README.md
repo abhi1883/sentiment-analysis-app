@@ -24,7 +24,8 @@ This project analyzes movie reviews from the IMDB dataset (50,000 reviews) and p
 
 ## 🚀 How to Run Locally
 1. Clone this repository
-2. Install dependencies:
-3. Run the app:
+2. Install dependencies: `pip install -r requirements.txt`
+3. Run the app: `python -m streamlit run app.py`
+
 ## 👤 Author
 Abhinanda Udupa — 3rd Semester Engineering Student
